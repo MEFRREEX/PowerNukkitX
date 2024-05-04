@@ -2,6 +2,7 @@ package cn.nukkit.block;
 
 import cn.nukkit.block.property.CommonBlockProperties;
 import cn.nukkit.block.property.enums.SandType;
+import cn.nukkit.item.Item;
 import cn.nukkit.item.ItemTool;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,4 +45,10 @@ public class BlockSand extends BlockFallable {
         return getPropertyValue(CommonBlockProperties.SAND_TYPE) == SandType.NORMAL ? "Sand" : "Red Sand";
     }
 
+    @Override
+    public Item toItem() {
+        Item item = super.toItem();
+        item.setDamage(getPropertyValue(CommonBlockProperties.SAND_TYPE) == SandType.NORMAL ? 0 : 1);
+        return item;
+    }
 }
